@@ -1,5 +1,4 @@
-// Client side C program to demonstrate Socket
-// programming
+
 #include <arpa/inet.h>
 #include <stdio.h>
 #include <string.h>
@@ -21,8 +20,7 @@ int main(int argc, char const* argv[])
 	serv_addr.sin_family = AF_INET;
 	serv_addr.sin_port = htons(PORT);
 
-	// Convert IPv4 and IPv6 addresses from text to binary
-	// form
+	
 	if (inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr)
 		<= 0) {
 		printf(
@@ -40,8 +38,7 @@ int main(int argc, char const* argv[])
 	send(client_fd, hello, strlen(hello), 0);
 	printf("Hello message sent\n");
 	valread = read(client_fd, buffer,
-				1024 - 1); // subtract 1 for the null
-							// terminator at the end
+				1024 - 1); 
 	printf("%s\n", buffer);
 
 	// closing the connected socket
