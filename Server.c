@@ -1,5 +1,4 @@
-// Server side C program to demonstrate Socket
-// programming
+
 #include <netinet/in.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -17,13 +16,13 @@ int main(int argc, char const* argv[])
 	char buffer[1024] = { 0 };
 	char* hello = "Hello from server";
 
-	// Creating socket file descriptor
+	
 	if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
 		perror("socket failed");
 		exit(EXIT_FAILURE);
 	}
 
-	// Forcefully attaching socket to the port 8080
+	
 	if (setsockopt(server_fd, SOL_SOCKET,
 				SO_REUSEADDR | SO_REUSEPORT, &opt,
 				sizeof(opt))) {
@@ -34,7 +33,7 @@ int main(int argc, char const* argv[])
 	address.sin_addr.s_addr = INADDR_ANY;
 	address.sin_port = htons(PORT);
 
-	// Forcefully attaching socket to the port 8080
+	
 	if (bind(server_fd, (struct sockaddr*)&address,
 			sizeof(address))
 		< 0) {
@@ -59,7 +58,7 @@ int main(int argc, char const* argv[])
 	send(new_socket, hello, strlen(hello), 0);
 	printf("Hello message sent\n");
 
-	// closing the connected socket
+	
 	close(new_socket);
 	// closing the listening socket
 	close(server_fd);
